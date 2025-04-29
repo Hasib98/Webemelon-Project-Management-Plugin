@@ -1,0 +1,87 @@
+
+/* ====================****================== */
+
+ .container button {
+    border: none;
+    background: black;
+    color: white;
+    border-radius: 8px;
+    padding: 12px 20px;
+    margin-block: 4px;  
+    
+}
+ .container button:hover {
+   
+    background: #333;
+    cursor: pointer;
+}
+
+ .container input:focus {
+    outline: none;
+}
+
+ .container .container:nth-child(2) form {
+    display: flex;
+    flex-direction: column;
+}
+
+ input,  select,  textarea {
+    padding: 10px;
+    margin-inline: 6px;
+    border-radius: 6px;
+    background: transparent;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    
+}
+
+
+body {
+    width: 100%;
+    max-width: 1080px;
+    margin-inline: auto;
+    margin-block: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif
+}
+
+form#project_details_form {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fit, 400px);
+}
+
+form#project_details_form button[type=submit]{
+    grid-column: 1/2;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+
+ ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 400px;
+}
+ ul li {
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
+    margin-block: 4px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.2);
+    transition: all 0.2s ease-in-out;
+}
+ ul li:hover {
+    background: #333;
+    cursor: pointer;
+}
+ ul li a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+ ul li:hover  a{
+    color: white;
+}

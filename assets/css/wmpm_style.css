@@ -1,0 +1,713 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Ubuntu', sans-serif;
+
+}
+
+header {
+    height: 40px;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+
+
+    padding: 0 10px;
+    border-bottom: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    position: fixed;
+    width: 100%;
+}
+
+.toggle_left_bar_burger_button_container {
+
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toggle_left_bar_burger_button_container img {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.logo_container {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+.logo_container img {
+    height: 30px;
+    margin-right: 10px;
+}
+
+
+.sidebar {
+    width: 250px;
+    background-color: #f8f8f8;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    /* Hide the sidebar by default */
+    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 80px 10px 0 10px;
+    /* Adjust for header height */
+}
+
+.sidebar.open {
+    left: 0;
+    /* Show the sidebar when the class is added */
+}
+
+.team_name_container,
+.project_name_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #242424;
+    padding: 10px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 10px 4px 7px rgba(0, 0, 0, 0.1);
+
+}
+
+.toggle_team_button,
+.toggle_project_button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #747474;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #f8f8f8;
+    border: none;
+    font-size: 16px;
+
+
+}
+
+.toggle_team_button:hover,
+.toggle_project_button:hover {
+    background-color: #9b9b9b;
+    /* Darker shade on hover */
+    color: #f8f8f8;
+    /* Change text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow on hover */
+    transform: translateY(-2px);
+    /* Slight lift effect on hover */
+    transition: all 0.3s ease-in-out;
+    /* Smooth transition for all properties */
+
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    background-color: #444444;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #747474;
+    margin: 5px 0;
+    font-size: 16px;
+    color: #ffffff;
+    transition: border-color 0.3s ease-in-out;
+    outline: none;
+    /* Remove default outline */
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #ccc;
+    /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /* Add shadow on focus */
+
+    transition: all 0.1s ease-in-out;
+    /* Smooth transition for all properties */
+
+}
+
+/* input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: #ffffff;
+    transition: background-color 5000s ease-in-out 0s;
+    box-shadow: inset 0 0 20px 20px #23232329;
+}
+ */
+input::placeholder {
+    color: #f8f8f8;
+    opacity: 0.7;
+    /* Adjust opacity for placeholder text */
+    font-size: 12px;
+    /* Adjust font size for placeholder text */
+
+
+}
+
+.create_team_form,
+.create_project_form {
+    display: none;
+}
+
+.create_team_form.open,
+.create_project_form.open {
+    display: block;
+}
+
+
+
+ul.team_list,
+ul.project_list {
+
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+}
+
+ul.team_list li,
+ul.project_list li {
+    background-color: #4b4b4b;
+    padding: 8px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+ul.team_list li:hover,
+ul.project_list li:hover {
+    background-color: #303030;
+    /* Darker shade on hover */
+    color: #f8f8f8;
+    /* Change text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow on hover */
+    transform: translateY(-1px);
+    /* Slight lift effect on hover */
+    transition: all 0.2s ease-in-out;
+    /* Smooth transition for all properties */
+    font-size: 16px;
+    /* Increase font size on hover */
+
+}
+
+.team_modal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 500px;
+    width: 600px;
+    background-color: #4b4b4b;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+}
+
+.team_modal h2 {
+    color: #f8f8f8;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+
+.team_modal button.delete_team_btn{
+    background: #363636;
+    border: none;
+    border-radius: 6px;
+    padding: 8px;
+    color: white;
+    cursor: pointer;
+}
+
+
+.team_modal button.delete_team_btn:hover{
+ 
+    background: #9c9c9c;
+    color: #f8f8f8;
+    transition: background 0.3s ease-in-out;
+}
+
+
+.team_modal.open {
+    display: block;
+}
+
+.close_team_modal {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 50%;
+    background-color: #363636;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #c0c0c0;
+    border: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.close_team_modal:hover {
+
+    /* Darker shade on hover */
+    color: #fff;
+    /* Change text color on hover */
+    transition: all 0.2s ease-in-out;
+    /* Smooth transition for all properties */
+
+}
+
+.team_modal ul {
+    margin-top: 20px;
+    padding: 0;
+    list-style: none;
+}
+
+.team_modal ul li {
+    background-color: #4b4b4b;
+    padding: 10px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    background-color: #303030;
+
+}
+
+.team_modal ul li button.delete_member_button {
+    background-color: #3b3a3a;
+    padding: 5px 10px;
+    border-radius: 50%;
+    color: #f8f8f8;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 30px;   
+}
+
+
+
+.team_modal ul li img {
+    height: 24px;
+    width: 24px;
+    margin-right: 15px;
+    vertical-align: middle;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f8f8f8;
+}
+
+.team_modal ul li:hover {
+    background-color: #5f5e5e;
+    /* Darker shade on hover */
+    color: #f8f8f8;
+    /* Change text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow on hover */
+    /* transform: translateY(-1px); */
+    /* Slight lift effect on hover */
+    /* transition: all 0.1s ease-in-out; */
+    /* Smooth transition for all properties */
+}
+
+.right_sidebar {
+    /* display: none; */
+    width: 750px;
+    background-color: #242424;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: -750px;
+    /* Hide the sidebar by default */
+    transition: right 0.3s ease-in-out;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+    padding: 100px 20px 20px 20px;
+    /* Adjust for header height */
+    color: #f8f8f8;
+}
+
+
+.right_sidebar .right_sidebar_content .project_description {
+    background-color: #202020;
+    padding: 10px;
+    border-radius: 5px;
+    color: #cecece;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+.right_sidebar .right_sidebar_content  .data_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #242424;
+    padding: 5px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    font-size: 16px;
+    /* font-weight: 500; */
+}
+.right_sidebar .right_sidebar_content .data_container label{
+    font-size: 16px;
+    font-weight: 500;
+    color: #f8f8f8;
+    margin-right: 10px;
+    text-transform: capitalize;
+    width: 100px;
+}
+.right_sidebar .right_sidebar_content .data_container .project_due_date,
+.right_sidebar .right_sidebar_content .data_container .project_priority,
+.right_sidebar .right_sidebar_content .data_container .project_status{
+    /* background-color: #202020; */
+    padding: 10px;
+    border-radius: 5px;
+    color: #cecece;
+
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+}
+
+.right_sidebar.open {
+    /* display: block; */
+    right: 0;
+    /* Show the sidebar when the class is added */
+}
+
+.right_sidebar .close_right_sidebar {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top: 87px;
+    right: 7px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 50%;
+    background-color: #363636;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #c0c0c0;
+    border: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.right_sidebar button.delete_project_btn {
+    background-color: #363636;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 138px;
+    right: 10px;
+}
+.right_sidebar button.delete_project_btn:hover {
+    background-color: #9b9b9b;
+    /* Darker shade on hover */
+    color: #f8f8f8;
+    /* Change text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow on hover */
+    transform: translateY(-1px);
+    /* Slight lift effect on hover */
+    transition: all 0.2s ease-in-out;
+    /* Smooth transition for all properties */
+}
+
+.right_sidebar .close_right_sidebar:hover {
+    /* Darker shade on hover */
+    color: #fff;
+    /* Change text color on hover */
+    transition: all 0.2s ease-in-out;
+    /* Smooth transition for all properties */
+
+}
+
+button.edit_project_btn {
+    background-color: #363636;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button.edit_project_btn:hover {
+    background-color: #5f5e5e;
+    /* Darker shade on hover */
+    color: #f8f8f8;
+    /* Change text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow on hover */
+    transform: translateY(-1px);
+    /* Slight lift effect on hover */
+    transition: all 0.2s ease-in-out;
+    /* Smooth transition for all properties */
+}
+
+button.edit_project_btn:focus {
+    outline: none;
+    /* Remove default outline */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    /* Add shadow on focus */
+    transition: all 0.1s ease-in-out;
+    /* Smooth transition for all properties */
+}
+
+
+.project_title {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    color: #f8f8f8;
+    text-align: center;
+}
+
+ul.project_member_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 10px;
+    width: 400px;
+}
+
+ul.project_member_list li {
+    background-color: #4b4b4b;
+    padding: 8px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+ul.project_member_list li button.delete__project_member_button {
+    background-color: #3b3a3a;
+    padding: 5px 10px;
+    border-radius: 50%;
+    color: #f8f8f8;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    right: 340px;   
+}
+
+
+ul.project_member_list li img {
+    height: 24px;
+    width: 24px;
+    margin-right: 15px;
+    vertical-align: middle;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid #f8f8f8;
+}
+
+ul.project_member_list li:hover {
+    background-color: #303030;
+    /* Darker shade on hover */
+    color: #f8f8f8;
+    /* Change text color on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Add shadow on hover */
+    /* Slight lift effect on hover */
+    transition: all 0.2s ease-in-out;
+    /* Smooth transition for all properties */
+    font-size: 16px;
+    /* Increase font size on hover */
+
+}
+
+
+.edit_project_modal {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 500px;
+    width: 600px;
+    background-color: #4b4b4b;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: scroll;
+}
+
+.edit_project_modal h2 {
+    color: #f8f8f8;
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+}
+
+.edit_project_modal.open {
+    display: block;
+}
+
+.edit_project_modal .close_edit_project_modal {
+    height: 25px;
+    width: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 50%;
+    background-color: #363636;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    color: #c0c0c0;
+    border: none;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.edit_project_modal .close_edit_project_modal:hover {
+    /* Darker shade on hover */
+    color: #fff;
+    /* Change text color on hover */
+    transition: all 0.2s ease-in-out;
+    /* Smooth transition for all properties */
+
+}
+
+.edit_project_modal .save_project_btn {
+    background-color: #242424;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add_member_to_project_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    background-color: #242424;
+    padding: 10px;
+    border-radius: 5px;
+    color: #f8f8f8;
+    font-size: 16px;
+    font-weight: 500;
+    box-shadow: 0px 2px 15px rgb(218 214 214 / 25%);
+    margin-top: 20px;
+}
+
+.add_member_to_project_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.add_member_to_project_container button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #747474;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #f8f8f8;
+    border: none;
+    font-size: 16px;
+}
+
+.add_member_to_project_form {
+
+    display: none;
+    margin-top: 20px;
+    width: 100%;
+    gap: 10px;
+    align-items: center;
+}
+
+.add_member_to_project_form.open {
+    display: flex;
+}
+
+.add_member_to_project_form select {
+    padding: 5px;
+}
+
+.add_member_to_project_form select.team_list {
+    width: 200px;
+    /* Remove default outline */
+}
+
+.add_member_to_project_form button.add_member_to_project_btn {
+    font-size: 10px;
+    /* Remove default outline */
+    height: 31px;
+    width: 31px;
+}
